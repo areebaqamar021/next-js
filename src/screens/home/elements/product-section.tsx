@@ -21,7 +21,7 @@ export default function ProductSection() {
     }, []);
 
     return (
-        <div className="py-8 px-20">
+        <div className="py-8 px-32">
             <h2 className="text-2xl font-bold text-center mb-6">Our Products</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -43,16 +43,19 @@ export default function ProductSection() {
                                 -30%
                             </div>
                             {/* Hover Actions */}
-                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                <Button type="primary" className="mt-4 bg-blue-500 hover:bg-blue-600">
-                                    Add to Cart
-                                </Button>
-                                <div className="flex gap-3 bg-white rounded px-2 py-1">
-                                    <button className="text-xs text-gray-600 hover:text-black">Share</button>
-                                    <button className="text-xs text-gray-600 hover:text-black">Compare</button>
-                                    <button className="text-xs text-gray-600 hover:text-black">Like</button>
+                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2">
+                                <div>
+                                    <Button type="primary" className="bg-white text-[#b88e2f] font-semibold mt-10 px-10 py-3">
+                                        Add to Cart
+                                    </Button>
+                                </div>
+                                <div className="flex gap-3">
+                                    <button className="text-xs text-white">Share</button>
+                                    <button className="text-xs text-white">Compare</button>
+                                    <button className="text-xs text-white">Like</button>
                                 </div>
                             </div>
+
                         </div>
                         <div className="p-2 bg-gray-100">
                             <h3 className="text-sm font-medium truncate">{product.title}</h3>
