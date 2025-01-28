@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Card } from "antd";
+import { Card, Button } from "antd";
 import Image from "next/image";
 
 interface Product {
@@ -26,8 +26,8 @@ export default function ProductSection() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {products.map((product) => (
-                    <Card 
-                        key={product.id} 
+                    <Card
+                        key={product.id}
                         className="relative group"
                         bodyStyle={{ padding: 0 }}
                     >
@@ -44,6 +44,9 @@ export default function ProductSection() {
                             </div>
                             {/* Hover Actions */}
                             <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <Button type="primary" className="mt-4 bg-blue-500 hover:bg-blue-600">
+                                    Add to Cart
+                                </Button>
                                 <div className="flex gap-3 bg-white rounded px-2 py-1">
                                     <button className="text-xs text-gray-600 hover:text-black">Share</button>
                                     <button className="text-xs text-gray-600 hover:text-black">Compare</button>
@@ -51,7 +54,7 @@ export default function ProductSection() {
                                 </div>
                             </div>
                         </div>
-                        <div className="p-2">
+                        <div className="p-2 bg-gray-100">
                             <h3 className="text-sm font-medium truncate">{product.title}</h3>
                             <p className="text-gray-500 text-xs truncate">{product.category}</p>
                             <div className="flex items-center gap-1 mt-1">
