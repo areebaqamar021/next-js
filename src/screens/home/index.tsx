@@ -4,6 +4,7 @@ import React from 'react'
 import AppBanner from './elements/app-banner'
 import BrowseRange from './elements/browse-range'
 import ProductSection from './elements/product-section'
+import Footer from './elements/app-footer'
 
 function HomeScreen() {
   return (
@@ -11,6 +12,7 @@ function HomeScreen() {
       <AppBanner />
       <BrowseRange />
       <ProductSection />
+      <Footer />
     </div>
   )
 }
