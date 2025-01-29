@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="max-w-[1200px] mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <Link href="/" className="text-xl font-bold mb-4">
+            <Link href="/" className="text-xl font-bold mb-4 text-black">
               Funiro.
             </Link>
             <p className="text-gray-500 text-sm mt-4">
@@ -17,16 +17,16 @@ const Footer = () => {
           <div>
             <h3 className="text-sm text-gray-500 mb-4">Links</h3>
             <nav className="flex flex-col gap-3">
-              <Link href="/" className="text-sm hover:underline font-semibold">
+              <Link href="/" className="text-sm hover:underline font-semibold text-black">
                 Home
               </Link>
-              <Link href="/shop" className="text-sm hover:underline font-semibold">
+              <Link href="/shop" className="text-sm hover:underline font-semibold text-black">
                 Shop
               </Link>
-              <Link href="/about" className="text-sm hover:underline font-semibold">
+              <Link href="/about" className="text-sm hover:underline font-semibold text-black">
                 About
               </Link>
-              <Link href="/contact" className="text-sm hover:underline font-semibold">
+              <Link href="/contact" className="text-sm hover:underline font-semibold text-black">
                 Contact
               </Link>
             </nav>
@@ -34,13 +34,13 @@ const Footer = () => {
           <div>
             <h3 className="text-sm text-gray-500 mb-4">Help</h3>
             <nav className="flex flex-col gap-3">
-              <Link href="/payment" className="text-sm hover:underline font-semibold">
+              <Link href="/payment" className="text-sm hover:underline font-semibold text-black">
                 Payment Options
               </Link>
-              <Link href="/returns" className="text-sm hover:underline font-semibold">
+              <Link href="/returns" className="text-sm hover:underline font-semibold text-black">
                 Returns
               </Link>
-              <Link href="/privacy" className="text-sm hover:underline font-semibold">
+              <Link href="/privacy" className="text-sm hover:underline font-semibold text-black">
                 Privacy Policies
               </Link>
             </nav>
