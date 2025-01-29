@@ -1,11 +1,3 @@
-import React from 'react'
+import { ProductsScreen } from "@src/screens";
 
-function ProductsPage() {
-  return (
-    <div>
-      ProductsPage
-    </div>
-  )
-}
-
-export default ProductsPage
+export default ProductsScreen

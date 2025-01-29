@@ -3,17 +3,18 @@ import React from 'react';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
 const { Header } = Layout
 const items: MenuItem[] = [
     {
-        label: 'Home',
+        label: <Link href='/'>Home</Link>,
         key: 'home',
     },
     {
-        label: 'Shop',
+        label: <Link href='/products'>Shop</Link>,
         key: 'shop',
     },
     {
@@ -32,7 +33,7 @@ function AppHeader() {
             <Image src={"/images/logo.png"} alt='' width={150} height={150} />
             <Menu className='border-b-0 flex-1 flex justify-center items-center text-base font-semibold' mode="horizontal" items={items} />
             <Space size="large">
-            <Button
+                <Button
                     shape="circle"
                     type="text"
                     className="text-xl"
