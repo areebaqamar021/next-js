@@ -1,7 +1,9 @@
-"use client";
 import { useState, useEffect } from "react";
-import { Card, Button } from "antd";
+import { Card, Button, message, Badge, Typography, Spin } from "antd";
+import { ShareAltOutlined, LikeOutlined, SwapOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import Image from "next/image";
+import Link from "next/link";
+import { api } from "@src/lib";
 
 interface Product {
     id: number;
@@ -13,61 +15,82 @@ interface Product {
 
 export default function ProductSection() {
     const [products, setProducts] = useState<Product[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    const fetchData = async () => {
+        try {
+            setLoading(true)
+            const { data } = await api.get<Product[]>("/products", {
+                params: { limit: 8 }
+            })
+            setProducts(data)
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (error: any) {
+            message.error(error.message)
+        } finally {
+            setLoading(false)
+        }
+    }
 
     useEffect(() => {
-        fetch("https://fakestoreapi.com/products")
-            .then((res) => res.json())
-            .then((data: Product[]) => setProducts(data.slice(0, 8)));
+        fetchData();
     }, []);
 
     return (
         <div className="py-8 px-32">
-            <h2 className="text-2xl font-bold text-center mb-6">Our Products</h2>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {products.map((product) => (
-                    <Card
-                        key={product.id}
-                        className="relative group"
-                        bodyStyle={{ padding: 0 }}
-                    >
-                        <div className="relative">
-                            <Image
-                                src={product.image}
-                                alt={product.title}
-                                width={200}
-                                height={200}
-                                className="w-full h-48 object-contain"
-                            />
-                            <div className="absolute top-2 right-2 bg-red-400 text-white rounded-full px-2 py-0.5 text-xs">
-                                -30%
-                            </div>
-                            {/* Hover Actions */}
-                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2">
-                                <div>
-                                    <Button type="primary" className="bg-white text-[#b88e2f] font-semibold mt-10 px-10 py-3">
-                                        Add to Cart
-                                    </Button>
-                                </div>
-                                <div className="flex gap-3">
-                                    <button className="text-xs text-white">Share</button>
-                                    <button className="text-xs text-white">Compare</button>
-                                    <button className="text-xs text-white">Like</button>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div className="p-2 bg-gray-100">
-                            <h3 className="text-sm font-medium truncate">{product.title}</h3>
-                            <p className="text-gray-500 text-xs truncate">{product.category}</p>
-                            <div className="flex items-center gap-1 mt-1">
-                                <span className="text-sm font-bold">$ {product.price.toLocaleString()}</span>
-                                <span className="text-gray-400 line-through text-xs">$ {(product.price * 1.3).toLocaleString()}</span>
-                            </div>
-                        </div>
-                    </Card>
-                ))}
+            <div className="flex justify-between items-center mb-4">
+                <div />
+                <Typography.Title level={3}>Our Products</Typography.Title>
+                <Link href="/products">
+                    <Button icon={<ArrowRightOutlined />} iconPosition="end">
+                        Show More
+                    </Button>
+                </Link>
             </div>
+
+            {loading ? (
+                <div className="flex justify-center p-10">
+                    <Spin />
+                </div>
+            ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {products.map((product) => (
+                        <Badge.Ribbon
+                            color="red"
+                            key={product.id}
+                            text="-30%"
+                        >
+                            <Card
+                                classNames={{ body: "bg-gray-100 p-3" }}
+                                cover={
+                                    <Image
+                                        src={product.image}
+                                        alt={product.title}
+                                        width={200}
+                                        height={200}
+                                        className="w-full h-48 object-contain"
+                                    />
+                                }
+                                actions={[
+                                    <Button shape="circle" key="share" type="text" icon={<ShareAltOutlined />} />,
+                                    <Button shape="circle" key="compare" type="text" icon={<SwapOutlined />} />,
+                                    <Button shape="circle" key="like" type="text" icon={<LikeOutlined />} />
+                                ]}
+                            >
+                                <h3 className="text-sm font-medium truncate">{product.title}</h3>
+                                <p className="text-gray-500 text-xs truncate">{product.category}</p>
+                                <div className="flex items-center gap-1 mt-1">
+                                    <span className="text-sm font-bold">$ {product.price.toLocaleString()}</span>
+                                    <span className="text-gray-400 line-through text-xs">$ {(product.price * 1.3).toLocaleString()}</span>
+                                </div>
+                                <Button type="primary" block className="mt-2">
+                                    Add to Cart
+                                </Button>
+                            </Card>
+                        </Badge.Ribbon>
+                    ))}
+                </div>
+            )}
         </div>
     );
 }
