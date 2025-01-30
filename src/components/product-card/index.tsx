@@ -11,7 +11,7 @@ function ProductCard({ product }: { product: Product }) {
             text="-30%"
         >
             <Card
-                classNames={{ body: "bg-gray-100 p-3" }}
+                classNames={{ body: "p-3" }}
                 cover={
                     <Image
                         src={product.image}

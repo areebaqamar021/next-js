@@ -1,6 +1,6 @@
 "use client"
 import { AntdRegistry } from '@ant-design/nextjs-registry'
-import { QueryProvier } from '@src/lib'
+import { QueryProvider } from '@src/lib'
 import { ConfigProvider } from 'antd'
 import React, { ReactNode } from 'react'
 
@@ -10,9 +10,9 @@ function Providers({ children }: { children: ReactNode }) {
             <ConfigProvider
                 theme={{ token: { colorPrimary: "#b88e2f" } }}
             >
-                <QueryProvier>
+                <QueryProvider>
                     {children}
-                </QueryProvier>
+                </QueryProvider>
             </ConfigProvider>
         </AntdRegistry>
     )

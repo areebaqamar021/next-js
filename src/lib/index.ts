@@ -1,2 +1,2 @@
 export { default as api } from './api'
-export { default as QueryProvier, queryClient } from './react-query'
+export { default as QueryProvider, queryClient } from './react-query'
