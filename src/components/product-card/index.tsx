@@ -1,20 +1,22 @@
 import { LikeOutlined, ShareAltOutlined, SwapOutlined } from '@ant-design/icons'
-import { Product } from '@src/apis'
+import { IProduct } from '@src/apis'
 import { Badge, Button, Card } from 'antd'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
-function ProductCard({ product }: { product: Product }) {
+function ProductCard({ product }: { product: IProduct }) {
     return (
         <Badge.Ribbon
             color="red"
             text="-30%"
         >
+            <Link href={`/products/${product.id}`}>
             <Card
                 classNames={{ body: "p-3" }}
                 cover={
                     <Image
-                        src={product.image}
+                        src={product.thumbnail}
                         alt={product.title}
                         width={200}
                         height={200}
@@ -37,6 +39,7 @@ function ProductCard({ product }: { product: Product }) {
                     Add to Cart
                 </Button>
             </Card>
+            </Link>
         </Badge.Ribbon>
     )
 }

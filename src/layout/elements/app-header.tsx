@@ -22,7 +22,7 @@ const items: MenuItem[] = [
         key: 'about',
     },
     {
-        label: 'Contacts',
+        label: <Link href='/contact'>Contacts</Link>,
         key: 'contacts',
     },
 ];

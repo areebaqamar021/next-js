@@ -5,7 +5,7 @@ import { ProductCard } from "@src/components";
 import { ArrowRightOutlined } from "@ant-design/icons";
 
 export default function ProductSection() {
-    const { data: products, isLoading } = useGetProducts({
+    const { data, isLoading } = useGetProducts({
         limit: 8
     });
 
@@ -24,13 +24,13 @@ export default function ProductSection() {
                 <div className="flex justify-center p-10">
                     <Spin />
                 </div>
-            ) : !products?.length ? (
+            ) : !data?.products?.length ? (
                 <Empty
                     description="No products"
                 />
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {products?.map((product) => (
+                    {data?.products?.map((product) => (
                         <ProductCard product={product} key={product.id} />
                     ))}
                 </div>
