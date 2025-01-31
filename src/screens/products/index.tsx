@@ -35,8 +35,8 @@ function ProductsScreen() {
                 options={[
                     { label: "All", value: "all" },
                     ...categories.map(category => ({
-                        label: <Typography.Text className='capitalize'>{category}</Typography.Text>,
-                        value: category
+                        label: <Typography.Text className='capitalize'>{category.name}</Typography.Text>,
+                        value: category.slug
                     }))
                 ]}
             />

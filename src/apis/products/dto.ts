@@ -7,8 +7,8 @@ export interface IReview {
 }
 
 export interface IMeta{
-    "createdAt": IMeta,
-    "updatedAt": IMeta,
+    "createdAt": string,
+    "updatedAt": string,
     "barcode": number,
     "qrCode": string
 }
@@ -39,6 +39,12 @@ export interface IProduct {
     "meta": IMeta,
     "images": string[],
     "thumbnail": string;
+}
+
+export interface ICategory {
+    "slug" : string,
+    "name" : string,
+    "url" : string
 }
 
 export type GetProductsInput = {

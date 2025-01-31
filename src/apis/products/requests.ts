@@ -1,6 +1,6 @@
 import { api } from "@src/lib";
 import { useQuery } from "@tanstack/react-query";
-import { GetProductDetailInput, GetProductsInput, GetProductsResponse, IProduct } from "./dto";
+import { GetProductDetailInput, GetProductsInput, GetProductsResponse, IProduct, ICategory } from "./dto";
 
 export const useGetProducts = ({ limit, category }: GetProductsInput) => useQuery({
     queryKey: ["products", limit, category],
@@ -11,7 +11,7 @@ export const useGetProducts = ({ limit, category }: GetProductsInput) => useQuer
 
 export const useGetAllCategories = () => useQuery({
     queryKey: ["categories"],
-    queryFn: async () => (await api.get<string[]>("/products/categories")).data,
+    queryFn: async () => (await api.get<ICategory[]>("/products/categories")).data,
 })
 
 export const useGetProductDetail = ({ id }: GetProductDetailInput) => useQuery({
