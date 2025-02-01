@@ -2,15 +2,19 @@
 import { useGetProducts, useGetAllCategories } from '@src/apis';
 import { ProductCard } from '@src/components';
 import { Empty, Spin, Typography, Select } from 'antd';
+import { Input } from 'antd';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
 function ProductsScreen() {
     const [category, setCategory] = useState("all")
-    const { data, isLoading } = useGetProducts({
-        category: category === "all" ? undefined : category
+    const [search, setSearch] = useState("")
+    const { data, isLoading, } = useGetProducts({
+        category: category === "all" ? undefined : category,
+        search: search === "" ? undefined : search
     });
     const { data: categories = [] } = useGetAllCategories();
+    const { Search } = Input;
 
     return (
         <div>
@@ -26,8 +30,10 @@ function ProductsScreen() {
                     <p className="font-medium">Home &gt; Shop</p>
                 </div>
             </div>
+            <div>
+            <Search placeholder="input search text" onSearch={setSearch} style={{ width: 200 }} />
+            </div>
             <div className='flex justify-end my-3'>
-
             <Select
                 className='w-48'
                 value={category}

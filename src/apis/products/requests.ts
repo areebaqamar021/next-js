@@ -2,10 +2,10 @@ import { api } from "@src/lib";
 import { useQuery } from "@tanstack/react-query";
 import { GetProductDetailInput, GetProductsInput, GetProductsResponse, IProduct, ICategory } from "./dto";
 
-export const useGetProducts = ({ limit, category }: GetProductsInput) => useQuery({
-    queryKey: ["products", limit, category],
-    queryFn: async () => (await api.get<GetProductsResponse>(`/products${category ? `/category/${category}` : ""}`, {
-        params: { limit }
+export const useGetProducts = ({ limit, category, search }: GetProductsInput) => useQuery({
+    queryKey: ["products", limit, category, search],
+    queryFn: async () => (await api.get<GetProductsResponse>(`/products${search ? "/search" : ""}${category ? `/category/${category}` : ""}`, {
+        params: { limit, q: search }
     })).data,
 })
 

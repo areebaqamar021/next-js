@@ -50,6 +50,7 @@ export interface ICategory {
 export type GetProductsInput = {
     limit?: number
     category?: string
+    search?:string
 }
 
 export type GetProductsResponse = {
