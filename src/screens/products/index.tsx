@@ -15,7 +15,7 @@ function ProductsScreen() {
     });
     const { data: categories = [] } = useGetAllCategories();
     const { Search } = Input;
-
+    
     return (
         <div>
             <div className="relative w-full h-[50vh]">
@@ -30,24 +30,27 @@ function ProductsScreen() {
                     <p className="font-medium">Home &gt; Shop</p>
                 </div>
             </div>
-            <div>
-            <Search placeholder="input search text" onSearch={setSearch} style={{ width: 200 }} />
+            
+            <div className="flex justify-between items-center px-5 my-3">
+                <Search 
+                    placeholder="input search text" 
+                    onSearch={setSearch} 
+                    style={{ width: 200 }} 
+                />
+                <Select
+                    className='w-48'
+                    value={category}
+                    onChange={setCategory}
+                    options={[
+                        { label: "All", value: "all" },
+                        ...categories.map(category => ({
+                            label: <Typography.Text className='capitalize'>{category.name}</Typography.Text>,
+                            value: category.slug
+                        }))
+                    ]}
+                />
             </div>
-            <div className='flex justify-end my-3'>
-            <Select
-                className='w-48'
-                value={category}
-                onChange={setCategory}
-                options={[
-                    { label: "All", value: "all" },
-                    ...categories.map(category => ({
-                        label: <Typography.Text className='capitalize'>{category.name}</Typography.Text>,
-                        value: category.slug
-                    }))
-                ]}
-            />
-            </div>
-
+            
             <div className="p-5">
                 {isLoading ? (
                     <div className="flex justify-center p-10">
