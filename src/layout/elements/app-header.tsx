@@ -33,18 +33,20 @@ function AppHeader() {
             <Image src={"/images/logo.png"} alt='' width={150} height={150} />
             <Menu className='border-b-0 flex-1 flex justify-center items-center text-base font-semibold' mode="horizontal" items={items} />
             <Space size="large">
-                <Button
-                    shape="circle"
-                    type="text"
-                    className="text-xl"
-                >
-                    <Image
-                        src="/images/icons/account-alert.png"
-                        alt="Shopping Cart"
-                        width={20}
-                        height={20}
-                    />
-                </Button>
+                <Link href="/login">
+                    <Button
+                        shape="circle"
+                        type="text"
+                        className="text-xl"
+                    >
+                        <Image
+                            src="/images/icons/account-alert.png"
+                            alt="account-alert"
+                            width={20}
+                            height={20}
+                        />
+                    </Button>
+                </Link>
                 <Button
                     shape="circle"
                     type="text"
@@ -52,7 +54,7 @@ function AppHeader() {
                 >
                     <Image
                         src="/images/icons/search.png"
-                        alt="Shopping Cart"
+                        alt="search"
                         width={20}
                         height={20}
                     />
@@ -64,7 +66,7 @@ function AppHeader() {
                 >
                     <Image
                         src="/images/icons/heart.png"
-                        alt="Shopping Cart"
+                        alt="heart"
                         width={20}
                         height={20}
                     />
@@ -76,7 +78,7 @@ function AppHeader() {
                 >
                     <Image
                         src="/images/icons/shopping-cart.png"
-                        alt="Shopping Cart"
+                        alt="shopping-cart"
                         width={20}
                         height={20}
                     />

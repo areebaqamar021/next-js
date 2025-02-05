@@ -1,5 +1,5 @@
 import { api } from "@src/lib";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { GetProductDetailInput, GetProductsInput, GetProductsResponse, IProduct, ICategory } from "./dto";
 
 export const useGetProducts = ({ limit, category, search }: GetProductsInput) => useQuery({
