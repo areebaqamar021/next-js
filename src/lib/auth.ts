@@ -31,7 +31,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           if (!props.password && !props.username) return null
           const user = await loginApi({ username: props.username as string, password: props.password as string })
           return { ...user, id: user.id.toString() }
-        } catch (error) {
+        } catch (error){
           console.log("🚀 ~ authorize ~ error:", error)
           return null
         }

@@ -1,5 +1,5 @@
 "use client"
-import { useGetCartByUser, useGetUser } from '@src/apis';
+import { useGetCart, useGetUser } from '@src/apis';
 import { Badge, Button, Drawer } from 'antd';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -7,8 +7,7 @@ import { useState } from 'react';
 const Cart = () => {
     const [open, setOpen] = useState(false);
     const { data: user } = useGetUser()
-    console.log("🚀 ~ Cart ~ user:", user)
-    const { data: cart } = useGetCartByUser({ user_id: user?.id })
+    const { data: cart } = useGetCart({ user_id: user?.id })
     console.log("🚀 ~ Cart ~ cart:", cart)
     return (
         <>

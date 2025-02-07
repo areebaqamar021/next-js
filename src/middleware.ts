@@ -2,7 +2,6 @@ import { auth } from "@src/lib"
 import { NextResponse } from "next/server"
 
 export default auth((req) => {
-    console.log("🚀 ~ auth ~ req:", req.auth)
     if (!!req.auth?.user?.email && req.nextUrl.pathname === "/login") {
         return NextResponse.redirect(new URL("/", req.nextUrl))
     }
