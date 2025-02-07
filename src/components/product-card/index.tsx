@@ -1,6 +1,6 @@
 "use client"
 import { LikeOutlined, ShareAltOutlined, SwapOutlined } from '@ant-design/icons'
-import { IProduct, useCreateCart, useGetCart, useGetUser } from '@src/apis'
+import { IProduct, useCreateCart, useGetCart, useGetUser, useUpdateCart } from '@src/apis'
 import { Badge, Button, Card } from 'antd'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,12 +12,14 @@ function ProductCard({ product }: { product: IProduct }) {
     const { data: user } = useGetUser();
     const { data: cart } = useGetCart({ user_id: user?.id })
     const { mutateAsync: createCart, isPending: createCartLoading } = useCreateCart()
+    const { mutateAsync: updateCart, isPending: updateCartLoading } = useUpdateCart()
 
     const addToCard: MouseEventHandler<HTMLElement> = async (e) => {
         e.preventDefault()
         if (user) {
             if (cart) {
-
+                await updateCart
+        
             } else {
                 await createCart({
                     userId: user.id,
@@ -58,7 +60,7 @@ function ProductCard({ product }: { product: IProduct }) {
                         <span className="text-sm font-bold">$ {product.price.toLocaleString()}</span>
                         <span className="text-gray-400 line-through text-xs">$ {(product.price * 1.3).toLocaleString()}</span>
                     </div>
-                    <Button loading={createCartLoading} onClick={addToCard} type="primary" block className="mt-2">
+                    <Button loading={createCartLoading || updateCartLoading} onClick={addToCard} type="primary" block className="mt-2">
                         Add to Cart
                     </Button>
                 </Card>
