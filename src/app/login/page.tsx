@@ -1,3 +1,16 @@
-import { LoginScreen } from "@src/screens";
+import { signIn } from '@src/lib'
+import { LoginScreen } from '@src/screens'
+import React from 'react'
 
-export default LoginScreen
+function LoginPage() {
+    return (
+        <LoginScreen
+            onSignIn={async (v) => {
+                "use server"
+                await signIn("credentials", { ...v, redirectTo: "/" })
+            }}
+        />
+    )
+}
+
+export default LoginPage

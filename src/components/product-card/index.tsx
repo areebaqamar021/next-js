@@ -6,6 +6,7 @@ import Link from 'next/link'
 import React from 'react'
 
 function ProductCard({ product }: { product: IProduct }) {
+    
     return (
         <Badge.Ribbon
             color="red"

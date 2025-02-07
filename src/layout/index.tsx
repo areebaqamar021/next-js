@@ -6,10 +6,10 @@ import AppHeader from './elements/app-header';
 
 const { Content } = Layout;
 
-const AppLayout = ({ children }: { children: ReactNode }) => {
+const AppLayout = ({ children, onLogout }: { children: ReactNode, onLogout: () => Promise<void> }) => {
     return (
         <Layout className='h-full'>
-            <AppHeader />
+            <AppHeader onLogout={onLogout} />
             <Layout className='overflow-y-auto'>
                 <Content >{children}</Content>
                 {/* <AppFooter /> */}

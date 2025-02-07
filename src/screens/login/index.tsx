@@ -1,11 +1,23 @@
 "use client"
-import React from "react";
+import React, { useState } from "react";
 import { Form, Input, Button, Checkbox, Card } from "antd";
 import Link from "next/link";
+import { LoginInput } from "@src/apis";
 
-const LoginScreen = () => {
-  const onFinish = (values: { email: string; password: string }) => {
-    console.log("Success:", values);
+type LoginScreenProps = {
+  onSignIn: (v: LoginInput) => Promise<void>
+}
+
+const LoginScreen = ({ onSignIn }: LoginScreenProps) => {
+  const [loading, setLoading] = useState(false);
+
+  const onFinish = async (values: LoginInput) => {
+    try {
+      setLoading(true)
+      await onSignIn(values)
+    } finally {
+      setLoading(false)
+    }
   };
 
   return (
@@ -17,7 +29,7 @@ const LoginScreen = () => {
         <Form layout="vertical" onFinish={onFinish}>
           <Form.Item
             label={<span className="text-gray-800 font-medium">Email</span>}
-            name="email"
+            name="username"
             rules={[{ required: true, message: "Please enter your email!" }]}
           >
             <Input placeholder="Enter your email" />
@@ -37,6 +49,7 @@ const LoginScreen = () => {
           </Form.Item>
           <Form.Item>
             <Button
+              loading={loading}
               type="primary"
               htmlType="submit"
               className="w-full bg-[#b88e2f] border-none text-white font-semibold py-2"
