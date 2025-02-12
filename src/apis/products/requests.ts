@@ -19,8 +19,4 @@ export const useGetProductDetail = ({ id }: GetProductDetailInput) => useQuery({
     queryFn: async () => (await api.get<IProduct>(`/products/${id}`)).data
 })
 
-// export const useAddToCart = () => useMutation({
-//     mutationKey: ["cart"],
-//     mutationFn: async () => (await api.get)
-// })
 
